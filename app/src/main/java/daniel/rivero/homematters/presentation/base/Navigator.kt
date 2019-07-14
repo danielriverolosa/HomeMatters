@@ -9,6 +9,7 @@ import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.presentation.login.fragment.LoginFragment
 import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
 import daniel.rivero.homematters.presentation.main.activity.MainActivity
+import daniel.rivero.homematters.presentation.main.calendar.fragment.CalendarFragment
 import javax.inject.Inject
 
 
@@ -57,6 +58,7 @@ class Navigator @Inject constructor(private val context: Context) {
     }
 
     fun showCalendar() {
+        showFragment(R.id.fragmentContainer, CalendarFragment.getInstance(), false)
     }
 
     fun showChart() {

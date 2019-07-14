@@ -14,4 +14,6 @@
     <string name="menu_bottom_navigation_chart_text">Chart</string>
     <string name="menu_bottom_navigation_account_text">Account</string>
     <string name="menu_calendar_mode">Calendar Mode</string>
+    <string name="task_status_done">Completada</string>
+    <string name="task_status_pending">Pendiente</string>
 </resources>

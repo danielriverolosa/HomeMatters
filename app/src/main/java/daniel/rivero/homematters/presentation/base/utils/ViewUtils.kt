@@ -1,8 +1,13 @@
 package daniel.rivero.homematters.presentation.base.utils
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.SearchView
 
@@ -18,6 +23,9 @@ fun View.hide() {
 fun View.invisible() {
     visibility = View.INVISIBLE
 }
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View = LayoutInflater.from(
+    context).inflate(layoutRes, this, attachToRoot)
 
 fun AppCompatEditText.afterTextChanged(afterTextChanged: ((String) -> Unit)?) {
     this.addTextChangedListener(object: TextWatcher {
@@ -50,4 +58,8 @@ fun SearchView.onQueryTextChange(queryTextChange: (String) -> Unit) {
 
         override fun onQueryTextSubmit(query: String?): Boolean { return false }
     })
+}
+
+fun getImageResourceFromString(drawableName: String, context: Context): Int {
+    return context.resources.getIdentifier(drawableName, "drawable", context.packageName)
 }

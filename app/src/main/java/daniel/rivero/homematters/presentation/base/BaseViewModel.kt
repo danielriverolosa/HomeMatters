@@ -11,14 +11,18 @@ import javax.inject.Inject
 abstract class BaseViewModel<VS: ViewState, E: Event>(app: Application): AndroidViewModel(app) {
 
     @Inject
-    lateinit var navigator: Navigator
+    protected lateinit var navigator: Navigator
 
     protected val disposables = CompositeDisposable()
 
-    protected val mutableViewState = MutableLiveData<VS>()
+    private val mutableViewState = MutableLiveData<VS>()
 
     val viewState: LiveData<VS>
         get() = mutableViewState
+
+    protected fun updateViewState(viewState: VS) {
+        mutableViewState.value = viewState
+    }
 
     abstract fun onEvent(event: E)
 

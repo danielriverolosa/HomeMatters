@@ -15,8 +15,8 @@ inline fun <reified T : Serializable> BaseActivity<*, *>.getParamsByClass(tag: S
     getIntent()?.extras?.get(T::class.java.name + tag) as T
 //endregion
 
-//region BaseFragment extensions
-inline fun <reified T : Serializable> BaseFragment<*, *>.setParamsByClass(
+//region BaseViewModelFragment extensions
+inline fun <reified T : Serializable> BaseFragment.setParamsByClass(
     obj: T,
     tag: String = ""
 ) {
@@ -26,6 +26,17 @@ inline fun <reified T : Serializable> BaseFragment<*, *>.setParamsByClass(
     getArguments()?.putSerializable(T::class.java.name + tag, obj)
 }
 
-inline fun <reified T : Serializable> BaseFragment<*, *>.getParamsByClass(tag: String = ""): T =
-    getArguments()?.getSerializable(T::class.java.name + tag) as T
+inline fun <reified T : Serializable> BaseFragment.getParamsByClass(tag: String = ""): T =
+    arguments?.getSerializable(T::class.java.name + tag) as T
+
+inline fun <reified T : Serializable> BaseFragment.setParamByList(obj: List<T>?, tag: String = "") {
+    if (arguments == null) {
+        arguments = Bundle()
+    }
+    arguments?.putSerializable(T::class.java.name + tag, obj as Serializable)
+}
+
+inline fun <reified T : Serializable> BaseFragment.getParamByList(tag: String = ""): List<T> =
+    arguments?.getSerializable(T::class.java.name + tag) as List<T>
+
 //endregion

@@ -1,24 +1,21 @@
 package daniel.rivero.homematters.presentation.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import daniel.rivero.homematters.infrastructure.AndroidApplication
+import daniel.rivero.homematters.infrastructure.ContentView
 import daniel.rivero.homematters.infrastructure.di.component.ViewComponent
 import daniel.rivero.homematters.infrastructure.di.module.ViewModule
-import javax.inject.Inject
 
-
-abstract class BaseFragment<VM: BaseViewModel<VS, *>, VS: ViewState> : Fragment(), Renderable<VS> {
-
-    @Inject
-    lateinit var viewModel: VM
+abstract class BaseFragment: Fragment() {
 
     private val fragmentComponent by lazy {
         (activity?.application as AndroidApplication)
-                .applicationComponent
-                .viewComponent(ViewModule(activity as BaseActivity<*, *>))
+            .applicationComponent
+            .viewComponent(ViewModule(activity as BaseActivity<*, *>))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,19 +23,26 @@ abstract class BaseFragment<VM: BaseViewModel<VS, *>, VS: ViewState> : Fragment(
         initializeInjector(fragmentComponent)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    protected abstract fun initializeInjector(viewComponent: ViewComponent)
 
-        val factory = ViewModelFactory.createFor(viewModel)
-        ViewModelProviders.of(this, factory).get(viewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val viewId = getFragmentContentView()
+        if (viewId == 0) return null
 
-        viewModel.viewState.observe(this, Observer { render(it) })
+        return inflater.inflate(viewId, container, false)
     }
 
-    protected abstract fun initializeInjector(viewComponent: ViewComponent)
+    private fun getFragmentContentView(): Int {
+        val annotation = javaClass.getAnnotation(ContentView::class.java)
+        return annotation?.value ?: 0
+    }
 
     fun showMessage(message: String) {
         (activity as BaseActivity<*, *>).showMessage(message)
+    }
+
+    fun close() {
+        activity?.supportFragmentManager?.popBackStackImmediate()
     }
 
 }

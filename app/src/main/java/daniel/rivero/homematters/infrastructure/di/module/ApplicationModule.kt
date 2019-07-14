@@ -10,12 +10,14 @@ import daniel.rivero.homematters.data.datasource.api.RetrofitApiClientGenerator
 import daniel.rivero.homematters.data.repository.HomeDataRepository
 import daniel.rivero.homematters.data.repository.SecurityDataRepository
 import daniel.rivero.homematters.data.repository.TaskDataRepository
+import daniel.rivero.homematters.data.repository.UserDataRepository
 import daniel.rivero.homematters.data.repository.utils.ApiResponseHandler
 import daniel.rivero.homematters.data.repository.utils.ApiResponseHandlerImpl
 import daniel.rivero.homematters.data.service.PreferenceServiceImpl
 import daniel.rivero.homematters.domain.repository.HomeRepository
 import daniel.rivero.homematters.domain.repository.SecurityRepository
 import daniel.rivero.homematters.domain.repository.TaskRepository
+import daniel.rivero.homematters.domain.repository.UserRepository
 import daniel.rivero.homematters.domain.service.PreferenceService
 import javax.inject.Singleton
 
@@ -52,6 +54,9 @@ class ApplicationModule(private val application: AndroidApplication) {
     fun providesTaskRepository(taskDataRepository: TaskDataRepository): TaskRepository = taskDataRepository
 
     @Provides
+    @Singleton
+    fun providesUserRepository(userDataRepository: UserDataRepository): UserRepository = userDataRepository
+
     @Provides
     @Singleton
     fun providesHomeRepository(homeDataRepository: HomeDataRepository): HomeRepository = homeDataRepository

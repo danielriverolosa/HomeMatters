@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import daniel.rivero.homematters.R
+import daniel.rivero.homematters.domain.Home
 import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.presentation.login.fragment.LoginFragment
 import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
 import daniel.rivero.homematters.presentation.main.activity.MainActivity
 import daniel.rivero.homematters.presentation.main.calendar.fragment.CalendarFragment
+import daniel.rivero.homematters.presentation.main.home.fragment.*
 import javax.inject.Inject
 
 
@@ -51,7 +53,7 @@ class Navigator @Inject constructor(private val context: Context) {
     }
 
     fun showHomeSettings(home: Home) {
-
+        showFragment(R.id.fragmentContainer, HomeFragment.getInstance(home), false)
     }
 
     fun showTaskList() {

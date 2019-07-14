@@ -8,6 +8,7 @@ import daniel.rivero.homematters.R
 import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.presentation.login.fragment.LoginFragment
 import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
+import daniel.rivero.homematters.presentation.main.activity.MainActivity
 import javax.inject.Inject
 
 
@@ -48,8 +49,24 @@ class Navigator @Inject constructor(private val context: Context) {
         context.startActivity(MainActivity.getIntent(context, user))
     }
 
+    fun showHomeSettings(home: Home) {
 
     }
 
-    fun showSignUp() {
+    fun showTaskList() {
+    }
+
+    fun showCalendar() {
+    }
+
+    fun showChart() {
+
+    }
+
+    fun showEmptyHome() {
+
+    }
+
+    fun showUserDetail(user: User, showEditMode: Boolean) {
+
     }

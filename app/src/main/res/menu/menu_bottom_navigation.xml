@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/item_group"
+            android:enabled="true"
+            android:icon="@drawable/ic_group"
+            android:title="@string/menu_bottom_navigation_group_text"/>
+    <item
+            android:id="@+id/item_task_list"
+            android:enabled="true"
+            android:icon="@drawable/ic_task_list"
+            android:title="@string/menu_bottom_navigation_task_list_text"/>
+    <item
+            android:id="@+id/item_calendar"
+            android:enabled="true"
+            android:icon="@drawable/ic_calendar"
+            android:title="@string/menu_bottom_navigation_calendar_text"/>
+    <item
+            android:id="@+id/item_chart"
+            android:enabled="true"
+            android:icon="@drawable/ic_chart"
+            android:title="@string/menu_bottom_navigation_chart_text"/>
+    <item
+            android:id="@+id/item_profile"
+            android:enabled="true"
+            android:icon="@drawable/ic_account_box"
+            android:title="@string/menu_bottom_navigation_account_text"/>
+
+</menu>

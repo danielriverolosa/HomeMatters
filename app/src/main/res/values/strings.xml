@@ -8,4 +8,10 @@
     <string name="login_recovery_password_text">¿Has olvidado la contraseña?</string>
     <string name="login_sign_up_text">¿Todavía no tienes cuenta? Regístrate</string>
     <string name="sign_up_login_text">¿Ya tienes una cuenta? Inicia sesión</string>
+    <string name="menu_bottom_navigation_group_text">Group</string>
+    <string name="menu_bottom_navigation_task_list_text">Task List</string>
+    <string name="menu_bottom_navigation_calendar_text">Calendar</string>
+    <string name="menu_bottom_navigation_chart_text">Chart</string>
+    <string name="menu_bottom_navigation_account_text">Account</string>
+    <string name="menu_calendar_mode">Calendar Mode</string>
 </resources>

@@ -8,6 +8,7 @@ import daniel.rivero.homematters.presentation.login.fragment.LoginFragment
 import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
 import daniel.rivero.homematters.presentation.main.activity.MainActivity
 import daniel.rivero.homematters.presentation.main.calendar.fragment.CalendarFragment
+import daniel.rivero.homematters.presentation.main.home.fragment.*
 
 
 @ViewScope
@@ -25,4 +26,6 @@ interface ViewComponent {
     fun inject(activity: MainActivity)
     fun inject(fragment: CalendarFragment)
 
+    fun inject(fragment: HomeFragment)
+    fun inject(fragment: HomeUnselectedFragment)
 }

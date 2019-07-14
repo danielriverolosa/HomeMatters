@@ -16,6 +16,10 @@
     <string name="menu_calendar_mode">Calendar Mode</string>
     <string name="task_status_done">Completada</string>
     <string name="task_status_pending">Pendiente</string>
+    <string name="new_house_title">¡No tienes hogar!</string>
+    <string name="new_house_description">Si quieres organizarte con tus compañeros, puedes crear un hogar e invitarlos seleccionando nueva, en caso de que quieras añadirte en una casa ya creada, comunica al administrador que te añada.</string>
+    <string name="new_house_new_button">nueva</string>
+    <string name="new_house_find_button">buscar</string>
     <string name="menu_add_user">Add user</string>
     <string name="menu_edit_home">edit home</string>
 </resources>

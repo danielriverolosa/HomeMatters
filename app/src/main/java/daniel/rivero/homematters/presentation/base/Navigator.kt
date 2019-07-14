@@ -68,6 +68,7 @@ class Navigator @Inject constructor(private val context: Context) {
     }
 
     fun showEmptyHome() {
+        showFragment(R.id.fragmentContainer, HomeUnselectedFragment.getInstance(), false)
 
     }
 

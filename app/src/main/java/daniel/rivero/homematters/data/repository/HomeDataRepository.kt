@@ -18,19 +18,19 @@ class HomeDataRepository @Inject constructor(
 ) : HomeRepository {
 
     override fun registerHome(dto: RegisterHomeDto): Single<Home> {
-        return Single.create { buildHome() }
+        return Single.just(buildHome())
     }
 
     override fun editHome(dto: EditHomeDto): Single<Home> {
-        return Single.create { buildHome() }
+        return Single.just(buildHome())
     }
 
     override fun deleteHomeToUser(dto: DeleteHomeToUserDto): Completable {
         return Completable.complete()
     }
 
-    private fun buildHome() {
-        Home("12345", "Torrejón", User("12345", "Daniel", "danielrl.drl@gmail.com", weeklyEffort = 10))
+    private fun buildHome(): Home {
+        return Home("12345", "Torrejón", User("12345", "Daniel", "danielrl.drl@gmail.com", weeklyEffort = 10))
     }
 
 }

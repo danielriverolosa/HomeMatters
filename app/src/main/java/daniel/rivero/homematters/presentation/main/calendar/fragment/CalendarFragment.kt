@@ -37,6 +37,7 @@ class CalendarFragment : BaseViewModelFragment<CalendarViewModel, CalendarViewSt
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.onEvent(CalendarEvent.Initialize)
+        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     override fun initializeInjector(viewComponent: ViewComponent) {
@@ -64,8 +65,8 @@ class CalendarFragment : BaseViewModelFragment<CalendarViewModel, CalendarViewSt
 
     private fun getCalendarModeIcon(calendarMode: CalendarMode): Int {
         return when(calendarMode) {
-            CalendarMode.MONTHS -> R.drawable.ic_calendar_monthly
-            else -> R.drawable.ic_calendar_weekly
+            CalendarMode.MONTHS -> R.drawable.ic_calendar_weekly
+            else -> R.drawable.ic_calendar_monthly
         }
     }
 
@@ -94,7 +95,6 @@ class CalendarFragment : BaseViewModelFragment<CalendarViewModel, CalendarViewSt
     private fun loadAssignedTasks(taskList: List<AssignedTask>) {
         val adapter = TaskListAdapter(taskList) { viewModel.onEvent(CalendarEvent.OnClickItem(it)) }
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }
 
     private fun changeCalendarMode(calendarMode: CalendarMode) {

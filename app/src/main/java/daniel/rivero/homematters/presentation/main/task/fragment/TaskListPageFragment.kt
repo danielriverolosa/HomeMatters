@@ -7,10 +7,7 @@ import daniel.rivero.homematters.domain.AssignedTask
 import daniel.rivero.homematters.infrastructure.ContentView
 import daniel.rivero.homematters.infrastructure.di.component.ViewComponent
 import daniel.rivero.homematters.presentation.base.BaseViewModelFragment
-import daniel.rivero.homematters.presentation.base.utils.getParamByList
-import daniel.rivero.homematters.presentation.base.utils.getParamsByClass
-import daniel.rivero.homematters.presentation.base.utils.setParamByList
-import daniel.rivero.homematters.presentation.base.utils.setParamsByClass
+import daniel.rivero.homematters.presentation.base.utils.*
 import daniel.rivero.homematters.presentation.main.calendar.adapter.TaskListAdapter
 import daniel.rivero.homematters.presentation.main.task.event.TaskListEvent
 import daniel.rivero.homematters.presentation.main.task.viewmodel.TaskListViewModel
@@ -37,13 +34,18 @@ class TaskListPageFragment : BaseViewModelFragment<TaskListViewModel, TaskListVi
     }
 
     override fun render(viewState: TaskListViewState) {
-        when(viewState) {
+        when (viewState) {
             is TaskListViewState.LoadData -> loadInitialData(viewState.taskList)
         }
     }
 
     private fun loadInitialData(taskList: List<AssignedTask>) {
-        recyclerView.adapter = TaskListAdapter(taskList) { viewModel.onEvent(TaskListEvent.OnClickTask(it)) }
+        if (taskList.isEmpty()) {
+            recyclerView.hide()
+            emptyView.show()
+        } else {
+            recyclerView.adapter = TaskListAdapter(taskList) { viewModel.onEvent(TaskListEvent.OnClickTask(it)) }
+        }
     }
 
     fun getTitle() = getParamsByClass<String>()

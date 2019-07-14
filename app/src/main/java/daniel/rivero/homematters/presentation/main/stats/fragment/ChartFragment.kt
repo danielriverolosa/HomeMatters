@@ -1,7 +1,6 @@
 package daniel.rivero.homematters.presentation.main.stats.fragment
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -11,7 +10,6 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
 import daniel.rivero.homematters.R
 import daniel.rivero.homematters.domain.EffortStat
 import daniel.rivero.homematters.infrastructure.ContentView
@@ -21,9 +19,9 @@ import daniel.rivero.homematters.presentation.main.stats.event.ChartEvent
 import daniel.rivero.homematters.presentation.main.stats.utils.CustomValueFormatter
 import daniel.rivero.homematters.presentation.main.stats.viewmodel.ChartViewModel
 import daniel.rivero.homematters.presentation.main.stats.viewstate.ChartViewState
-import kotlinx.android.synthetic.main.fragment_fragment_chart.*
+import kotlinx.android.synthetic.main.fragment_chart.*
 
-@ContentView(R.layout.fragment_fragment_chart)
+@ContentView(R.layout.fragment_chart)
 class ChartFragment : BaseViewModelFragment<ChartViewModel, ChartViewState>() {
 
     companion object {

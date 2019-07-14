@@ -12,7 +12,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/Toolbar"
             android:elevation="1dp"
-            android:background="@android:color/white"
+            android:background="@color/primary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:elevation="1dp"
-            android:background="@android:color/white"
+            android:background="@color/primary"
             app:itemIconTint="@drawable/selector_bottom_navigation"
             app:itemTextColor="@drawable/selector_bottom_navigation"
             app:menu="@menu/menu_bottom_navigation"/>

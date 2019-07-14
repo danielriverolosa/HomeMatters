@@ -17,11 +17,11 @@ class UserDataRepository @Inject constructor(
     private val apiResponseHandler: ApiResponseHandler
 ) : UserRepository {
     override fun getUserListByHome(home: Home): Single<List<User>> {
-        return Single.create{ listOf(buildUser()) }
+        return Single.just(listOf(buildUser()))
     }
 
     override fun getUserByEmail(findUserDto: FindUserDto): Single<User> {
-        return Single.create { buildUser() }
+        return Single.just(buildUser())
     }
 
     override fun addUserToHome(addUserDto: AddUserDto): Completable {

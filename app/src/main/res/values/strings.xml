@@ -7,4 +7,5 @@
     <string name="login_continue_text">Continuar</string>
     <string name="login_recovery_password_text">¿Has olvidado la contraseña?</string>
     <string name="login_sign_up_text">¿Todavía no tienes cuenta? Regístrate</string>
+    <string name="sign_up_login_text">¿Ya tienes una cuenta? Inicia sesión</string>
 </resources>

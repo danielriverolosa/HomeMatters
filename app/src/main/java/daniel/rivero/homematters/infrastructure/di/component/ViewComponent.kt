@@ -9,6 +9,7 @@ import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
 import daniel.rivero.homematters.presentation.main.activity.MainActivity
 import daniel.rivero.homematters.presentation.main.calendar.fragment.CalendarFragment
 import daniel.rivero.homematters.presentation.main.home.fragment.*
+import daniel.rivero.homematters.presentation.main.stats.fragment.ChartFragment
 import daniel.rivero.homematters.presentation.main.task.fragment.*
 import daniel.rivero.homematters.presentation.main.user.fragment.EditUserFragment
 import daniel.rivero.homematters.presentation.main.user.fragment.UserDetailFragment
@@ -47,5 +48,7 @@ interface ViewComponent {
     fun inject(fragment: TaskListSelectorFragment)
     fun inject(fragment: TaskListSelectorPageFragment)
     fun inject(fragment: TaskDetailFragment)
+
+    fun inject(fragment: ChartFragment)
 
 }

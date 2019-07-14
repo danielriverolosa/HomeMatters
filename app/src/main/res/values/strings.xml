@@ -57,4 +57,5 @@
     <string name="add_user_assigned_selection_hint">Asignado</string>
     <string name="task_list_selector_title">Selecciona</string>
     <string name="task_list_selector_description">Elige entre las sugeridas por nosotros o las creadas anteriormente por ti.</string>
+    <string name="chart_bar_title_home">Aquí tienes las estadísticas de los últimos 6 meses en el hogar</string>
 </resources>

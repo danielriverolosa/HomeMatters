@@ -13,6 +13,7 @@ import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
 import daniel.rivero.homematters.presentation.main.activity.MainActivity
 import daniel.rivero.homematters.presentation.main.calendar.fragment.CalendarFragment
 import daniel.rivero.homematters.presentation.main.home.fragment.*
+import daniel.rivero.homematters.presentation.main.stats.fragment.ChartFragment
 import daniel.rivero.homematters.presentation.main.task.fragment.*
 import daniel.rivero.homematters.presentation.main.user.fragment.EditUserFragment
 import daniel.rivero.homematters.presentation.main.user.fragment.UserDetailFragment
@@ -69,7 +70,7 @@ class Navigator @Inject constructor(private val context: Context) {
     }
 
     fun showChart() {
-
+        showFragment(R.id.fragmentContainer, ChartFragment.getInstance(), false)
     }
 
     fun showUserDetail(user: User, showEditMode: Boolean) {

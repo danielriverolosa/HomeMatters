@@ -23,4 +23,12 @@
     <color name="effort_xl">#ffb74d</color>
     <color name="effort_xxl">#ff8a65</color>
 
+    <color name="chart_color_green">#c8e6c9</color>
+    <color name="chart_color_cyan">#b2ebf2</color>
+    <color name="chart_color_teal">#b2dfdb</color>
+    <color name="chart_color_blue">#b3e5fc</color>
+    <color name="chart_color_indigo">#c5cae9</color>
+    <color name="chart_color_purple">#e1bee7</color>
+
+
 </resources>

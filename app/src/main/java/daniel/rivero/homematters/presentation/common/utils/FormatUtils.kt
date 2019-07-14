@@ -26,3 +26,8 @@ fun String.parseDate(): Date {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", locale)
     return formatter.parse(this)
 }
+
+fun Date.formatDateMonth(): String {
+    val formatter = SimpleDateFormat("MMM", locale)
+    return formatter.format(this)
+}

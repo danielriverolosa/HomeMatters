@@ -67,14 +67,22 @@ class Navigator @Inject constructor(private val context: Context) {
 
     }
 
+    fun showUserDetail(user: User, showEditMode: Boolean) {
+        showFragment(R.id.fragmentContainer, UserDetailFragment.getInstance(user, showEditMode), false)
+    }
+
     fun showEmptyHome() {
         showFragment(R.id.fragmentContainer, HomeUnselectedFragment.getInstance(), false)
+    }
+
     fun showCreateHome() {
         showFragment(R.id.fragmentContainer, CreateHomeFragment.getInstance(), false)
     }
 
     }
 
-    fun showUserDetail(user: User, showEditMode: Boolean) {
+    fun showEditHome(home: Home, userList: List<User>) {
+        showFragment(R.id.fragmentContainer, EditHomeFragment.getInstance(userList, home), true)
+    }
 
     }

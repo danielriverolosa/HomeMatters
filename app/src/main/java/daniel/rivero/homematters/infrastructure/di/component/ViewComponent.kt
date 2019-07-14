@@ -30,4 +30,5 @@ interface ViewComponent {
     fun inject(fragment: HomeUnselectedFragment)
     fun inject(fragment: CreateHomeFragment)
     fun inject(fragment: EditHomeFragment)
+    fun inject(fragment: AddUserFragment)
 }

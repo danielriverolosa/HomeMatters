@@ -11,7 +11,7 @@ class HomeUnselectedViewModel @Inject constructor(
 ): BaseViewModel<HomeUnselectedViewState, HomeUnselectedEvent>(app) {
     override fun onEvent(event: HomeUnselectedEvent) {
         when(event) {
-            HomeUnselectedEvent.NewHome -> navigator.showRegisterHome()
+            HomeUnselectedEvent.NewHome -> navigator.showCreateHome()
         }
     }
 }

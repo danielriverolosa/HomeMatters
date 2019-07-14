@@ -27,4 +27,11 @@
     <string name="menu_edit_home">edit home</string>
     <string name="user_spinner_dropdown_description"><![CDATA[<b>%1$s</b> (%2$s)]]></string>
     <string name="admin_spinner_title_text">Administrador</string>
+    <string name="add_user_effort">%d pts.</string>
+    <string name="add_user_warning_title">Uuups!!!</string>
+    <string name="add_user_not_found_text">¡No hemos encontrado ningún usuario con ese email!</string>
+    <string name="add_user_already_exist_text">¡El usuario ya está dentro del hogar!</string>
+    <string name="add_user_add_button_text">Añadir</string>
+    <string name="add_user_description_title">Busca al usuario que quieras agregar por su email.</string>
+    <string name="add_user_find_button_text">Buscar</string>
 </resources>

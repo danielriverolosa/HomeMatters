@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">HomeMatters</string>
+    <string name="login_name_hint_text">Nombre</string>
+    <string name="login_email_hint_text">Email</string>
+    <string name="login_password_hint_text">Contraseña</string>
+    <string name="login_confirm_password_hint_text">Repetir contraseña</string>
+    <string name="login_continue_text">Continuar</string>
+    <string name="login_recovery_password_text">¿Has olvidado la contraseña?</string>
+    <string name="login_sign_up_text">¿Todavía no tienes cuenta? Regístrate</string>
 </resources>

@@ -7,11 +7,13 @@ import dagger.Module
 import dagger.Provides
 import daniel.rivero.homematters.data.datasource.api.ApiClientGenerator
 import daniel.rivero.homematters.data.datasource.api.RetrofitApiClientGenerator
+import daniel.rivero.homematters.data.repository.HomeDataRepository
 import daniel.rivero.homematters.data.repository.SecurityDataRepository
 import daniel.rivero.homematters.data.repository.TaskDataRepository
 import daniel.rivero.homematters.data.repository.utils.ApiResponseHandler
 import daniel.rivero.homematters.data.repository.utils.ApiResponseHandlerImpl
 import daniel.rivero.homematters.data.service.PreferenceServiceImpl
+import daniel.rivero.homematters.domain.repository.HomeRepository
 import daniel.rivero.homematters.domain.repository.SecurityRepository
 import daniel.rivero.homematters.domain.repository.TaskRepository
 import daniel.rivero.homematters.domain.service.PreferenceService
@@ -48,5 +50,10 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides
     @Singleton
     fun providesTaskRepository(taskDataRepository: TaskDataRepository): TaskRepository = taskDataRepository
+
+    @Provides
+    @Provides
+    @Singleton
+    fun providesHomeRepository(homeDataRepository: HomeDataRepository): HomeRepository = homeDataRepository
 
 }

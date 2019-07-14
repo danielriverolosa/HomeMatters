@@ -45,6 +45,9 @@ class Navigator @Inject constructor(private val context: Context) {
     }
 
     fun goToMain(user: User) {
+        context.startActivity(MainActivity.getIntent(context, user))
+    }
+
 
     }
 

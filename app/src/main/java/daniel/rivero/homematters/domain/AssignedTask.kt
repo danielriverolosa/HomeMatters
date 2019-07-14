@@ -7,7 +7,8 @@ class AssignedTask(
     id: String,
     name: String,
     image: String,
-    val effort: Int,
+    val effort: TaskEffort,
     val date: Date,
-    val isDone: Boolean
+    val isDone: Boolean,
+    val assignedUser: User? = null
 ): Task(id, name, image), Serializable

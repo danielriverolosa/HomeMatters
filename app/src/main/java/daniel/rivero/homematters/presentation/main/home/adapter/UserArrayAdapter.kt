@@ -31,7 +31,6 @@ class UserArrayAdapter(
 
     override fun getCount() = userList.size
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView?.tag as View?
             ?: LayoutInflater.from(context).inflate(

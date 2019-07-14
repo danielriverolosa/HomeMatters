@@ -69,7 +69,7 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="16dp"
             style="@style/AccentButton"
-            android:text="@string/login_continue_text"
+            android:text="@string/general_continue_text"
             app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

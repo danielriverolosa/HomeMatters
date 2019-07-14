@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import daniel.rivero.homematters.R
 import daniel.rivero.homematters.domain.Home
+import daniel.rivero.homematters.domain.Task
 import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.presentation.login.fragment.LoginFragment
 import daniel.rivero.homematters.presentation.login.fragment.SignUpFragment
 import daniel.rivero.homematters.presentation.main.activity.MainActivity
 import daniel.rivero.homematters.presentation.main.calendar.fragment.CalendarFragment
 import daniel.rivero.homematters.presentation.main.home.fragment.*
+import daniel.rivero.homematters.presentation.main.task.fragment.*
+import daniel.rivero.homematters.presentation.main.user.fragment.EditUserFragment
+import daniel.rivero.homematters.presentation.main.user.fragment.UserDetailFragment
 import javax.inject.Inject
 
 
@@ -57,6 +61,7 @@ class Navigator @Inject constructor(private val context: Context) {
     }
 
     fun showTaskList() {
+        showFragment(R.id.fragmentContainer, TaskManagerFragment.getInstance(), false)
     }
 
     fun showCalendar() {
@@ -87,4 +92,24 @@ class Navigator @Inject constructor(private val context: Context) {
         showFragment(R.id.fragmentContainer, EditHomeFragment.getInstance(userList, home), true)
     }
 
+    fun showEditAccount(user: User) {
+        showFragment(R.id.fragmentContainer, EditUserFragment.getInstance(user), true)
     }
+
+    fun showAddTaskSelectorMode() {
+        showFragment(R.id.fragmentContainer, AddTaskSelectorModeFragment.getInstance(), false)
+    }
+
+    fun showCreateTask() {
+        showFragment(R.id.fragmentContainer, CreateTaskFragment.getInstance(), true)
+    }
+
+    fun showExistingTask() {
+        showFragment(R.id.fragmentContainer, TaskListSelectorFragment.getInstance(), true)
+    }
+
+    fun showScheduleTask(task: Task) {
+        showFragment(R.id.fragmentContainer, TaskDetailFragment.getInstance(task), true)
+    }
+
+}

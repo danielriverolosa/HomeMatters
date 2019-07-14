@@ -92,7 +92,7 @@ class CalendarFragment : BaseViewModelFragment<CalendarViewModel, CalendarViewSt
     }
 
     private fun loadAssignedTasks(taskList: List<AssignedTask>) {
-        val adapter = TaskListAdapter(taskList)
+        val adapter = TaskListAdapter(taskList) { viewModel.onEvent(CalendarEvent.OnClickItem(it)) }
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
     }

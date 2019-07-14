@@ -20,6 +20,9 @@
     <string name="new_house_description">Si quieres organizarte con tus compañeros, puedes crear un hogar e invitarlos seleccionando nueva, en caso de que quieras añadirte en una casa ya creada, comunica al administrador que te añada.</string>
     <string name="new_house_new_button">nueva</string>
     <string name="new_house_find_button">buscar</string>
+    <string name="general_required_field">Campo obligatorio</string>
+    <string name="general_something_went_wrong">Algo no ha ido como era de esperar. Intentalo de nuevo más tarde.</string>
+    <string name="new_house_admin_description">El administrador del hogar, por defecto, es el usuario que lo crea, después una vez creado, podrás editarlo desde el detalle del hogar.</string>
     <string name="menu_add_user">Add user</string>
     <string name="menu_edit_home">edit home</string>
 </resources>

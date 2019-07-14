@@ -28,4 +28,9 @@ class Navigator @Inject constructor(private val context: Context) {
         return fragment?.javaClass?.simpleName
     }
 
-}
+    fun showLogin() {
+
+    }
+
+    fun showSignUp() {
+    }

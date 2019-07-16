@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     private fun loadUserList(home: Home) {
-        userListUseCase(home)
+        userListUseCase(home.id)
             .subscribe(::onSuccess) {
                 //TODO: Show error view
             }

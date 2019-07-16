@@ -13,7 +13,7 @@ class CustomValueFormatter(
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
         val position = abs(value.toInt())
         return if (value.toInt() >= 0 && position < stats.size) {
-            stats[position].startDate.formatDateMonth().toUpperCase()
+            stats[position].date.formatDateMonth().toUpperCase()
         } else ""
     }
 

@@ -5,7 +5,7 @@ import daniel.rivero.homematters.presentation.base.ViewState
 
 sealed class UserDetailViewState: ViewState {
 
-    class LoadData(val user: User) : UserDetailViewState()
+    class LoadData(val user: User, val isAdmin: Boolean) : UserDetailViewState()
     object DeleteHomeLoading: UserDetailViewState()
     object HomeDeleted : UserDetailViewState()
     class GenericError(val message: String?): UserDetailViewState()

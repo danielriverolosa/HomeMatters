@@ -12,9 +12,14 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter
 import daniel.rivero.homematters.R
 import daniel.rivero.homematters.domain.EffortStat
+import daniel.rivero.homematters.domain.Home
 import daniel.rivero.homematters.infrastructure.ContentView
 import daniel.rivero.homematters.infrastructure.di.component.ViewComponent
 import daniel.rivero.homematters.presentation.base.BaseViewModelFragment
+import daniel.rivero.homematters.presentation.base.utils.getParamsByClass
+import daniel.rivero.homematters.presentation.base.utils.hide
+import daniel.rivero.homematters.presentation.base.utils.setParamsByClass
+import daniel.rivero.homematters.presentation.base.utils.show
 import daniel.rivero.homematters.presentation.main.stats.event.ChartEvent
 import daniel.rivero.homematters.presentation.main.stats.utils.CustomValueFormatter
 import daniel.rivero.homematters.presentation.main.stats.viewmodel.ChartViewModel
@@ -66,10 +71,15 @@ class ChartFragment : BaseViewModelFragment<ChartViewModel, ChartViewState>() {
     override fun render(viewState: ChartViewState) {
         when (viewState) {
             is ChartViewState.LoadData -> loadChartData(viewState.stats)
+            is ChartViewState.ShowError -> showMessage(viewState.message ?: getString(R.string.general_something_went_wrong))
+            is ChartViewState.ShowEmptyView -> showEmptyView()
         }
     }
 
     private fun loadChartData(stats: List<EffortStat>) {
+        loadingView.hide()
+        emptyView.hide()
+        chartView.show()
         barChart.data = BarData().apply {
             addDataSet(buildBarDataSet(stats))
         }
@@ -119,6 +129,12 @@ class ChartFragment : BaseViewModelFragment<ChartViewModel, ChartViewState>() {
         barChart.axisLeft.apply {
             valueFormatter = DefaultAxisValueFormatter(0)
         }
+    }
+
+    private fun showEmptyView() {
+        loadingView.hide()
+        chartView.hide()
+        emptyView.show()
     }
 
 }

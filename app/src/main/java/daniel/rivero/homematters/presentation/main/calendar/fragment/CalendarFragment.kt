@@ -36,8 +36,12 @@ class CalendarFragment : BaseViewModelFragment<CalendarViewModel, CalendarViewSt
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onEvent(CalendarEvent.Initialize)
         recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onEvent(CalendarEvent.Initialize)
     }
 
     override fun initializeInjector(viewComponent: ViewComponent) {
@@ -79,6 +83,7 @@ class CalendarFragment : BaseViewModelFragment<CalendarViewModel, CalendarViewSt
             is CalendarViewState.LoadInitialData -> loadData(viewState.calendarEvents, viewState.taskList)
             CalendarViewState.CalendarMode -> changeCalendarMode(calendarView.calendarMode)
             is CalendarViewState.UpdateTaskList -> loadAssignedTasks(viewState.taskList)
+            is CalendarViewState.ShowError -> showMessage(viewState.message ?: getString(R.string.general_something_went_wrong))
         }
     }
 

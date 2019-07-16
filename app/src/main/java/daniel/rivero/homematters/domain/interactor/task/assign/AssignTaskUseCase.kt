@@ -1,7 +1,9 @@
 package daniel.rivero.homematters.domain.interactor.task.assign
 
+import daniel.rivero.homematters.domain.AssignedTask
 import daniel.rivero.homematters.domain.repository.TaskRepository
 import io.reactivex.Completable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

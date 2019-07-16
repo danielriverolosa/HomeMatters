@@ -1,9 +1,12 @@
 package daniel.rivero.homematters.data.repository
 
 import daniel.rivero.homematters.data.datasource.api.ApiClientGenerator
+import daniel.rivero.homematters.data.datasource.api.home.HomeApi
+import daniel.rivero.homematters.data.datasource.api.user.UserApi
+import daniel.rivero.homematters.data.datasource.api.user.model.HomeRequest
+import daniel.rivero.homematters.data.datasource.api.user.model.UserRequest
 import daniel.rivero.homematters.data.repository.utils.ApiResponseHandler
 import daniel.rivero.homematters.domain.Home
-import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.domain.interactor.home.edit.EditHomeDto
 import daniel.rivero.homematters.domain.interactor.home.create.RegisterHomeDto
 import daniel.rivero.homematters.domain.interactor.home.delete.DeleteHomeToUserDto
@@ -17,20 +20,23 @@ class HomeDataRepository @Inject constructor(
     private val apiResponseHandler: ApiResponseHandler
 ) : HomeRepository {
 
+    val api by lazy { clientGenerator.generateApi(HomeApi::class) }
+
     override fun registerHome(dto: RegisterHomeDto): Single<Home> {
-        return Single.just(buildHome())
+        val response = api.editHouse(HomeRequest(dto.name, dto.admin?.id))
+
+        return apiResponseHandler.processResponse(response).map { Home(it.id, it.name, it.adminId) }
     }
 
     override fun editHome(dto: EditHomeDto): Single<Home> {
-        return Single.just(buildHome())
+        val response = api.editHouse(HomeRequest(dto.newName, dto.admin.id, dto.id))
+        return apiResponseHandler.processResponse(response).map { Home(it.id, it.name, it.adminId) }
     }
 
     override fun deleteHomeToUser(dto: DeleteHomeToUserDto): Completable {
-        return Completable.complete()
-    }
+        val userApi = clientGenerator.generateApi(UserApi::class)
 
-    private fun buildHome(): Home {
-        return Home("12345", "Torrejón", User("12345", "Daniel", "danielrl.drl@gmail.com", weeklyEffort = 10))
+        return userApi.updateUser(UserRequest(dto.user.id, dto.user.name, dto.user.email, null, dto.user.weeklyEffort))
     }
 
 }

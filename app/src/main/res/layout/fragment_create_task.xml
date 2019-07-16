@@ -13,6 +13,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+        <ProgressBar
+                android:id="@+id/initLoadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/contentView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="isDoneSwitch, isDoneTitle,headerImage,nameInputLayout,dateInputLayout,userAssignedInputLayout,effortTitle,effort,effortSeekBar,continueButton"/>
+
+
         <ImageView
                 android:id="@+id/headerImage"
                 android:layout_width="96dp"
@@ -90,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="@string/edit_user_weekly_effort_title"
+                android:text="Esfuerzo asignado"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userAssignedInputLayout"/>
@@ -115,6 +132,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/effort"/>
 
+        <TextView
+                android:id="@+id/isDoneTitle"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/task_detail_done_title"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/isDoneSwitch"
+                app:layout_constraintTop_toBottomOf="@id/effortSeekBar"
+                app:layout_constraintBottom_toTopOf="@id/continueButton"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/isDoneSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/isDoneTitle"
+                app:layout_constraintTop_toTopOf="@id/isDoneTitle"
+                app:layout_constraintBottom_toBottomOf="@id/isDoneTitle"/>
+
         <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/continueButton"
                 style="@style/AccentButton"
@@ -126,7 +164,7 @@
                 android:layout_marginBottom="24dp"
                 android:text="@string/general_continue_text"
                 app:layout_constraintVertical_bias="0"
-                app:layout_constraintTop_toBottomOf="@id/effortSeekBar"
+                app:layout_constraintTop_toBottomOf="@id/isDoneTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

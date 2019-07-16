@@ -11,5 +11,10 @@ sealed class CreateTaskViewState: ViewState {
     class OnEffortChange(val effort: TaskEffort) : CreateTaskViewState()
     class ShowError(val message: String?): CreateTaskViewState()
     object Close: CreateTaskViewState()
+    object UserHasRequired: CreateTaskViewState()
+    object DateHasRequired: CreateTaskViewState()
+    object EffortHasRequired: CreateTaskViewState()
+    object NameHasRequired: CreateTaskViewState()
+    object ShowLoadingWhileSaving: CreateTaskViewState()
 
 }

@@ -4,6 +4,5 @@ import daniel.rivero.homematters.domain.Home
 import java.util.*
 
 class BarChartDto (
-    val date: Date,
     val home: Home
 )

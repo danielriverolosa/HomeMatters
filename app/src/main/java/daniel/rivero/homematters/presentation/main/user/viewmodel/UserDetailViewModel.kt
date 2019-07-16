@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.domain.interactor.home.delete.DeleteHomeToUserDto
 import daniel.rivero.homematters.domain.interactor.home.delete.DeleteHomeToUserUseCase
+import daniel.rivero.homematters.domain.service.PreferenceService
 import daniel.rivero.homematters.infrastructure.AndroidApplication
 import daniel.rivero.homematters.presentation.base.BaseViewModel
 import daniel.rivero.homematters.presentation.main.user.event.UserDetailEvent
@@ -12,12 +13,13 @@ import javax.inject.Inject
 
 class UserDetailViewModel @Inject constructor(
     app: AndroidApplication,
-    private val deleteHomeToUserUseCase: DeleteHomeToUserUseCase
-): BaseViewModel<UserDetailViewState, UserDetailEvent>(app) {
+    private val deleteHomeToUserUseCase: DeleteHomeToUserUseCase,
+    private val preferenceService: PreferenceService
+) : BaseViewModel<UserDetailViewState, UserDetailEvent>(app) {
 
     private lateinit var user: User
 
-    override fun onEvent(event: UserDetailEvent) = when(event) {
+    override fun onEvent(event: UserDetailEvent) = when (event) {
         is UserDetailEvent.Initialize -> loadInitialData(event.user)
         is UserDetailEvent.EditAccount -> navigator.showEditAccount(user)
         UserDetailEvent.DeleteHome -> deleteHome()
@@ -25,7 +27,9 @@ class UserDetailViewModel @Inject constructor(
 
     private fun loadInitialData(user: User) {
         this.user = user
-        updateViewState(UserDetailViewState.LoadData(user))
+        preferenceService.getDefaultHome()?.let {
+            updateViewState(UserDetailViewState.LoadData(user, it.adminId == user.id))
+        } ?: updateViewState(UserDetailViewState.LoadData(user, false))
     }
 
     @SuppressLint("CheckResult")

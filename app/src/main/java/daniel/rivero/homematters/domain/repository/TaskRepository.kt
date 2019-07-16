@@ -15,12 +15,12 @@ interface TaskRepository {
 
     fun getAssignedTaskList(assignedTaskListToUserDto: AssignedTaskListToUserDto): Single<List<AssignedTask>>
 
-    fun createCustomTask(createTaskDto: CreateTaskDto): Completable
+    fun createCustomTask(dto: CreateTaskDto): Completable
 
     fun getCustomTaskList(homeId: String): Single<List<Task>>
 
     fun assignTask(dto: AssignTaskDto): Completable
 
-    fun updateAssignedTask(dto: UpdateAssignedTaskDto): Completable
+    fun updateAssignedTask(dto: AssignedTask): Completable
 
 }

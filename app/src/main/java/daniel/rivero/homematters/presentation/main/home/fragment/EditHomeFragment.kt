@@ -53,7 +53,7 @@ class EditHomeFragment: BaseViewModelFragment<EditHomeViewModel, EditHomeViewSta
     private fun loadData(homeName: String, admin: User, userList: List<User>) {
         context?.let {
             nameInput.setText(homeName)
-            adminSpinner.adapter = UserArrayAdapter(it, userList, 0, R.string.admin_spinner_title_text)
+            adminSpinner.adapter = UserArrayAdapter(it, userList, R.string.admin_spinner_title_text, R.string.edit_home_admin_selection_hint)
             adminSpinner.setSelection(userList.indexOf(admin))
         }
     }

@@ -21,6 +21,8 @@ class AddUserViewModel @Inject constructor(
     private val addUserUseCase: AddUserUseCase
 ): BaseViewModel<AddUserViewState, AddUserEvent>(app) {
 
+    private var userFinded: User? = null
+
     override fun onEvent(event: AddUserEvent) {
         when(event) {
             is AddUserEvent.FindUser -> findUser(event.email)
@@ -34,14 +36,17 @@ class AddUserViewModel @Inject constructor(
         findUserUseCase(FindUserDto(email)).subscribe(::onSuccessFindUser, ::handleError)
     }
 
-    private fun onSuccessFindUser(user: User) {
-        updateViewState(AddUserViewState.LoadUserData(user))
+    private fun onSuccessFindUser(user: User?) {
+        user?.let {
+            userFinded = it
+            updateViewState(AddUserViewState.LoadUserData(user))
+        } ?: updateViewState(AddUserViewState.UserNotFound)
     }
 
     @SuppressLint("CheckResult")
     private fun addUser(email: String, home: Home) {
         updateViewState(AddUserViewState.AddUserLoading)
-        addUserUseCase.invoke(AddUserDto(email, home)).subscribe(::onComplete, ::handleError)
+        addUserUseCase.invoke(AddUserDto(email, home, userFinded?.id)).subscribe(::onComplete, ::handleError)
     }
 
     private fun onComplete() {

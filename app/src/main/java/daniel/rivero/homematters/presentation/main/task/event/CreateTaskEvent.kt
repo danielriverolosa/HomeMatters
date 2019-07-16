@@ -7,6 +7,6 @@ import java.util.*
 
 sealed class CreateTaskEvent: Event {
     object Initialize : CreateTaskEvent()
-    class Continue(val name: String?, val date: Date?, val assignedUser: User?, val taskEffort: TaskEffort?): CreateTaskEvent()
+    class Continue(val name: String?, val date: Date?, val assignedUser: User?, val taskEffort: TaskEffort?, val isDone: Boolean = false): CreateTaskEvent()
     class EffortChange(val value: Int) : CreateTaskEvent()
 }

@@ -10,12 +10,12 @@ import io.reactivex.Single
 
 interface UserRepository {
 
-    fun getUserListByHome(home: Home): Single<List<User>>
+    fun getUserListByHome(homeId: String): Single<List<User>>
 
-    fun getUserByEmail(findUserDto: FindUserDto): Single<User>
+    fun getUserByEmail(findUserDto: FindUserDto): Single<User?>
 
-    fun addUserToHome(addUserDto: AddUserDto): Completable
+    fun addUserToHome(dto: AddUserDto): Completable
 
-    fun editUser(editUserDto: EditUserDto): Completable
+    fun editUser(dto: EditUserDto): Completable
 
 }

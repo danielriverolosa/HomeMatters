@@ -55,8 +55,14 @@
     <string name="add_task_selector_title_text">Asigna una tarea</string>
     <string name="add_user_assigned_selection_text">Selecciona usuario</string>
     <string name="add_user_assigned_selection_hint">Asignado</string>
+    <string name="edit_home_admin_selection_hint">Administrador</string>
     <string name="task_list_selector_title">Selecciona</string>
     <string name="task_list_selector_description">Elige entre las sugeridas por nosotros o las creadas anteriormente por ti.</string>
     <string name="chart_bar_title_home">Aquí tienes las estadísticas de los últimos 6 meses en el hogar</string>
     <string name="task_list_empty_view_text">¡No tienes ninguna tarea en este apartado!</string>
+    <string name="home_effort_capacity_text">Capacidad semanal: %d pts.</string>
+    <string name="chart_empty_view_description">Para poder ver las estadísticas debes estar dentro de un hogar, crea uno o dile al administrador del tuyo que te añada cuanto antes.</string>
+    <string name="user_detail_no_admin_text">Para gestionar quien entra y sale del hogar tienes que hablar con el administrador, solamente él puede hacer esas funciones.</string>
+    <string name="task_detail_date_hint">Fecha</string>
+    <string name="task_detail_done_title">Completada:</string>
 </resources>

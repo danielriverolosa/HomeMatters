@@ -42,7 +42,7 @@ class EditUserViewModel @Inject constructor(
         updateViewState(EditUserViewState.Loading)
         val effort = EffortResolver.getUserEffort(value)
 
-        editUserUseCase(EditUserDto(user.id, name, effort))
+        editUserUseCase(EditUserDto(user, name, effort))
             .subscribe(::onComplete, ::onError)
 
     }

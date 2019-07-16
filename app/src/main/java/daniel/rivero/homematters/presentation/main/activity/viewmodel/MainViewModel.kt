@@ -16,6 +16,8 @@ class MainViewModel @Inject constructor(
     private val preferenceService: PreferenceService
 ) : BaseViewModel<MainViewState, MainEvent>(app) {
 
+    private lateinit var user: User
+
     override fun onEvent(event: MainEvent) {
         when (event) {
             MainEvent.Initialize -> loadInitialData()
@@ -24,8 +26,9 @@ class MainViewModel @Inject constructor(
     }
 
     private fun loadInitialData() {
-        val home = Home("12345", "Torrejón", User("12345", "Daniel", "danielrl.drl@gmail.com", weeklyEffort = 10))
-        preferenceService.setUser(User("12345", "Daniel", "danielrl.drl@gmail.com", home, weeklyEffort = 10))
+        val home = Home("qx15I71iWc4uzME7t4Vl", "Torrejón", "def8RPMrh02u3xMyu0KJ")
+        user = User("def8RPMrh02u3xMyu0KJ", "Daniel", "danielrl.drl@gmail.com", "qx15I71iWc4uzME7t4Vl", 15)
+        preferenceService.setUser(user)
         preferenceService.setDefaultHome(home)
     }
 
@@ -35,7 +38,7 @@ class MainViewModel @Inject constructor(
             R.id.item_task_list -> navigator.showTaskList()
             R.id.item_calendar -> navigator.showCalendar()
             R.id.item_chart -> navigator.showChart()
-            R.id.item_profile -> navigator.showUserDetail(preferenceService.getUser()!!, true)
+            R.id.item_profile -> navigator.showUserDetail(user, true)
         }
     }
 

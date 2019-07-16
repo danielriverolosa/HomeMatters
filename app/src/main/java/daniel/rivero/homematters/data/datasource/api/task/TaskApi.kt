@@ -1,22 +1,33 @@
 package daniel.rivero.homematters.data.datasource.api.task
 
+import daniel.rivero.homematters.data.datasource.api.task.model.AssignTaskRequest
 import daniel.rivero.homematters.data.datasource.api.task.model.AssignedTaskResponse
+import daniel.rivero.homematters.data.datasource.api.task.model.CustomTaskRequest
 import daniel.rivero.homematters.data.datasource.api.task.model.TaskResponse
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.adapter.rxjava2.Result
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface TaskApi {
 
-    @GET("/taskList")
+    @GET("/tasks")
     fun getTaskList(): Single<Result<List<TaskResponse>>>
 
-    @GET("/assignedTaskList")
+    @GET("/custom/tasks/{houseId}")
+    fun getCustomTasks(@Path("houseId") houseId: String): Single<Result<List<TaskResponse>>>
+
+    @POST("/custom/tasks")
+    fun createCustomTask(@Body request: CustomTaskRequest): Completable
+
+    @POST("/assigned/tasks")
+    fun assignTask(@Body request: AssignTaskRequest): Completable
+
+    @GET("/assigned/tasks")
     fun getAssignedTaskList(
-        @Query("userId") userId: String,
-        @Query("toDate") toDate: String,
-        @Query("fromDate") fromDate: String
+        @Query("houseId") userId: String,
+        @Query("toDate") toDate: Long,
+        @Query("fromDate") fromDate: Long
     ): Single<Result<List<AssignedTaskResponse>>>
 
 }

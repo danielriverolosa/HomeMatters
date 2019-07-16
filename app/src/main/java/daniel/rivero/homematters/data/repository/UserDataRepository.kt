@@ -1,9 +1,13 @@
 package daniel.rivero.homematters.data.repository
 
 import daniel.rivero.homematters.data.datasource.api.ApiClientGenerator
+import daniel.rivero.homematters.data.datasource.api.user.UserApi
+import daniel.rivero.homematters.data.datasource.api.user.model.UpdateHomeRequest
+import daniel.rivero.homematters.data.datasource.api.user.model.UserRequest
 import daniel.rivero.homematters.data.repository.utils.ApiResponseHandler
 import daniel.rivero.homematters.domain.Home
 import daniel.rivero.homematters.domain.User
+import daniel.rivero.homematters.domain.UserEffort
 import daniel.rivero.homematters.domain.interactor.user.add.AddUserDto
 import daniel.rivero.homematters.domain.interactor.user.edit.EditUserDto
 import daniel.rivero.homematters.domain.interactor.user.find.FindUserDto
@@ -16,22 +20,30 @@ class UserDataRepository @Inject constructor(
     private val clientGenerator: ApiClientGenerator,
     private val apiResponseHandler: ApiResponseHandler
 ) : UserRepository {
-    override fun getUserListByHome(home: Home): Single<List<User>> {
-        return Single.just(listOf(buildUser()))
+
+    private val api by lazy { clientGenerator.generateApi(UserApi::class) }
+
+    override fun getUserListByHome(homeId: String): Single<List<User>> {
+        val response = api.getUsersByHouseId(homeId)
+
+        return apiResponseHandler.processResponse(response).map {
+            it.map { user -> User(user.id, user.name, user.email, user.houseId, user.effort ?: UserEffort.XS.value) }
+        }
     }
 
-    override fun getUserByEmail(findUserDto: FindUserDto): Single<User> {
-        return Single.just(buildUser())
+    override fun getUserByEmail(findUserDto: FindUserDto): Single<User?> {
+        val response = api.getUsersEmail(findUserDto.email)
+        return apiResponseHandler.processResponse(response).map {
+            it.map { user -> User(user.id, user.name, user.email, user.houseId, user.effort ?: UserEffort.XS.value) }.firstOrNull()
+        }
     }
 
-    override fun addUserToHome(addUserDto: AddUserDto): Completable {
-        return Completable.complete()
+    override fun addUserToHome(dto: AddUserDto): Completable {
+        return api.updateHome(UpdateHomeRequest(dto.userId, dto.home.id, dto.email))
     }
 
-    override fun editUser(editUserDto: EditUserDto): Completable {
-        return Completable.complete()
+    override fun editUser(dto: EditUserDto): Completable {
+        return api.updateUser(UserRequest(dto.user.id, dto.name, dto.user.email, dto.user.homeId, dto.effort.value))
     }
-
-    private fun buildUser() = User("12345", "Daniel", "danielrl.drl@gmail.com", weeklyEffort = 10)
 
 }

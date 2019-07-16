@@ -10,4 +10,10 @@ sealed class TaskDetailViewState: ViewState {
     class LoadTaskData(val task: Task, val userList: List<User>) : TaskDetailViewState()
     class LoadAssignedTaskData(val task: AssignedTask, val userList: List<User>) : TaskDetailViewState()
     class OnEffortChange(val effort: TaskEffort): TaskDetailViewState()
+    object UserHasRequired : TaskDetailViewState()
+    object DateHasRequired : TaskDetailViewState()
+    object EffortHasRequired : TaskDetailViewState()
+    object ShowLoadingWhileSaving: TaskDetailViewState()
+    object Close: TaskDetailViewState()
+    class ShowError(val message: String?): TaskDetailViewState()
 }

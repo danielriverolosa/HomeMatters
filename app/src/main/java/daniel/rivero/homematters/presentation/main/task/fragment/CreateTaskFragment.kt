@@ -9,6 +9,7 @@ import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.infrastructure.ContentView
 import daniel.rivero.homematters.infrastructure.di.component.ViewComponent
 import daniel.rivero.homematters.presentation.base.BaseViewModelFragment
+import daniel.rivero.homematters.presentation.base.utils.hide
 import daniel.rivero.homematters.presentation.base.utils.invisible
 import daniel.rivero.homematters.presentation.base.utils.show
 import daniel.rivero.homematters.presentation.common.fragment.DatePickerFragment
@@ -47,7 +48,8 @@ class CreateTaskFragment: BaseViewModelFragment<CreateTaskViewModel, CreateTaskV
                 nameInput.text.toString(),
                 dateInput.text.toString().parseFormalDate(),
                 userAssignedSpinner.selectedItem as User?,
-                EffortResolver.getTaskEffort(effortSeekBar.getProgress())
+                EffortResolver.getTaskEffort(effortSeekBar.getProgress()),
+                isDoneSwitch.isChecked
             )
         )
     }
@@ -70,6 +72,14 @@ class CreateTaskFragment: BaseViewModelFragment<CreateTaskViewModel, CreateTaskV
             is CreateTaskViewState.LoadInitialData -> loadData(viewState.userList)
             CreateTaskViewState.Loading -> showLoading()
             is CreateTaskViewState.OnEffortChange -> updateTaskEffort(viewState.effort)
+            CreateTaskViewState.UserHasRequired -> userAssignedInputLayout.error = getString(R.string.general_required_field)
+            CreateTaskViewState.NameHasRequired -> nameInputLayout.error = getString(R.string.general_required_field)
+            CreateTaskViewState.DateHasRequired -> dateInputLayout.error = getString(R.string.general_required_field)
+            CreateTaskViewState.Close -> close()
+            is CreateTaskViewState.ShowError -> {
+                hideLoading()
+                showMessage(viewState.message ?: getString(R.string.general_something_went_wrong))
+            }
         }
     }
 
@@ -81,11 +91,22 @@ class CreateTaskFragment: BaseViewModelFragment<CreateTaskViewModel, CreateTaskV
 
             effort.text = getString(R.string.edit_user_effort, TaskEffort.XS.description, TaskEffort.XS.value)
         }
+        showContentView()
+    }
+
+    private fun showContentView() {
+        initLoadingView.hide()
+        contentView.show()
     }
 
     private fun showLoading() {
         continueButton.invisible()
         loadingView.show()
+    }
+
+    private fun hideLoading() {
+        continueButton.show()
+        loadingView.hide()
     }
 
     private fun updateTaskEffort(taskEffort: TaskEffort) {

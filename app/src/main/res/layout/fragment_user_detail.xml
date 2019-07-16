@@ -53,6 +53,13 @@
             tools:text="Capacidad semanal: 60 pts"/>
 
     <androidx.constraintlayout.widget.Group
+            android:id="@+id/noAdminView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="noAdminImage,noAdminText"/>
+
+    <androidx.constraintlayout.widget.Group
             android:id="@+id/emptyHomeGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,6 +86,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/warningImage"/>
+
+    <ImageView
+            android:id="@+id/noAdminImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_warning"
+            android:tint="@color/tertiary_option"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/effortText"/>
+
+    <TextView
+            android:id="@+id/noAdminText"
+            style="@style/TextHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:text="@string/user_detail_no_admin_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/noAdminImage"/>
 
     <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteHomeButton"

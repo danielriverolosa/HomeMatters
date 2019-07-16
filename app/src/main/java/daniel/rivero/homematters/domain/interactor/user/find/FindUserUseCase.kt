@@ -12,7 +12,7 @@ class FindUserUseCase @Inject constructor(
     private val repository: UserRepository
 ) {
 
-    operator fun invoke(dto: FindUserDto): Single<User> {
+    operator fun invoke(dto: FindUserDto): Single<User?> {
         return repository.getUserByEmail(dto)
             .doOnError { Timber.e(it.message) }
             .observeOn(AndroidSchedulers.mainThread())

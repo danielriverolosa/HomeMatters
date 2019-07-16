@@ -11,9 +11,7 @@ import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.infrastructure.ContentView
 import daniel.rivero.homematters.infrastructure.di.component.ViewComponent
 import daniel.rivero.homematters.presentation.base.BaseViewModelFragment
-import daniel.rivero.homematters.presentation.base.utils.getImageResourceFromString
-import daniel.rivero.homematters.presentation.base.utils.getParamsByClass
-import daniel.rivero.homematters.presentation.base.utils.setParamsByClass
+import daniel.rivero.homematters.presentation.base.utils.*
 import daniel.rivero.homematters.presentation.common.fragment.DatePickerFragment
 import daniel.rivero.homematters.presentation.common.utils.EffortResolver
 import daniel.rivero.homematters.presentation.common.utils.formatDate
@@ -49,9 +47,11 @@ class TaskDetailFragment : BaseViewModelFragment<TaskDetailViewModel, TaskDetail
     private fun onEventContinue() {
         viewModel.onEvent(
             TaskDetailEvent.Continue(
+                getParamsByClass(),
                 EffortResolver.getTaskEffort(effortSeekBar.getProgress()),
-                dateInput.text.toString().parseFormalDate(),
-                userAssignedSpinner.selectedItem as User?
+                dateInput.text?.toString()?.parseFormalDate(),
+                userAssignedSpinner.selectedItem as User?,
+                isDoneSwitch.isChecked
             )
         )
     }
@@ -74,7 +74,25 @@ class TaskDetailFragment : BaseViewModelFragment<TaskDetailViewModel, TaskDetail
             is TaskDetailViewState.LoadTaskData -> loadTaskData(viewState.task, viewState.userList)
             is TaskDetailViewState.LoadAssignedTaskData -> loadAssignedTaskData(viewState.task, viewState.userList)
             is TaskDetailViewState.OnEffortChange -> updateTaskEffort(viewState.effort)
+            is TaskDetailViewState.ShowLoadingWhileSaving -> showLoadingWhileSaving()
+            TaskDetailViewState.UserHasRequired -> userAssignedInputLayout.error = getString(R.string.general_required_field)
+            TaskDetailViewState.DateHasRequired -> dateInputLayout.error = getString(R.string.general_required_field)
+            is TaskDetailViewState.Close -> close()
+            is TaskDetailViewState.ShowError -> {
+                hideLoadingWhileSaving()
+                showMessage(viewState.message ?: getString(R.string.general_something_went_wrong))
+            }
         }
+    }
+
+    private fun showLoadingWhileSaving() {
+        loadingView.show()
+        continueButton.invisible()
+    }
+
+    private fun hideLoadingWhileSaving() {
+        loadingView.hide()
+        continueButton.show()
     }
 
     private fun loadTaskData(task: Task, userList: List<User>) {
@@ -93,6 +111,7 @@ class TaskDetailFragment : BaseViewModelFragment<TaskDetailViewModel, TaskDetail
 
             effort.text = getString(R.string.edit_user_effort, TaskEffort.XS.description, TaskEffort.XS.value)
         }
+        showContentView()
     }
 
     private fun loadAssignedTaskData(task: AssignedTask, userList: List<User>) {
@@ -111,14 +130,20 @@ class TaskDetailFragment : BaseViewModelFragment<TaskDetailViewModel, TaskDetail
 
             effort.text = getString(R.string.edit_user_effort, task.effort.description, task.effort.value)
 
-            if (task.assignedUser != null) {
-                userAssignedSpinner.setSelection(userList.indexOf(userList.first { user -> user.id == task.assignedUser.id }))
-            }
+            isDoneSwitch.isChecked = task.isDone
+            dateInput.setText(task.date.formatDate())
+            userAssignedSpinner.setSelection(userList.indexOf(userList.first { user -> user.id == task.userId }))
         }
+        showContentView()
     }
 
     private fun updateTaskEffort(taskEffort: TaskEffort) {
         effort.text = getString(R.string.edit_user_effort, taskEffort.description, taskEffort.value)
+    }
+
+    private fun showContentView() {
+        initLoadingView.hide()
+        contentView.show()
     }
 
 }

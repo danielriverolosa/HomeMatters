@@ -1,6 +1,5 @@
 package daniel.rivero.homematters.presentation.common.utils
 
-import daniel.rivero.homematters.domain.Task
 import daniel.rivero.homematters.domain.TaskEffort
 import daniel.rivero.homematters.domain.UserEffort
 

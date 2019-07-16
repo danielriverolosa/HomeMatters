@@ -1,5 +1,7 @@
 package daniel.rivero.homematters.presentation.main.task.fragment
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -11,6 +13,7 @@ import daniel.rivero.homematters.presentation.base.BaseViewModelFragment
 import daniel.rivero.homematters.presentation.base.utils.hide
 import daniel.rivero.homematters.presentation.base.utils.show
 import daniel.rivero.homematters.presentation.main.task.adapter.TaskListSelectorPagerAdapter
+import daniel.rivero.homematters.presentation.main.task.event.TaskListSelectorEvent
 import daniel.rivero.homematters.presentation.main.task.viewmodel.TaskListSelectorViewModel
 import daniel.rivero.homematters.presentation.main.task.viewstate.TaskListSelectorViewState
 import kotlinx.android.synthetic.main.fragment_task_list_selector.*
@@ -20,6 +23,11 @@ class TaskListSelectorFragment: BaseViewModelFragment<TaskListSelectorViewModel,
 
     companion object {
         fun getInstance() = TaskListSelectorFragment()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.onEvent(TaskListSelectorEvent.Initialize)
     }
 
     override fun initializeInjector(viewComponent: ViewComponent) {

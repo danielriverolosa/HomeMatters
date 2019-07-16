@@ -8,4 +8,5 @@ sealed class CalendarViewState: ViewState {
     class LoadInitialData(val calendarEvents: List<CalendarDay>, val taskList: List<AssignedTask>): CalendarViewState()
     object CalendarMode: CalendarViewState()
     class UpdateTaskList(val taskList: List<AssignedTask>): CalendarViewState()
+    class ShowError(val message: String?): CalendarViewState()
 }

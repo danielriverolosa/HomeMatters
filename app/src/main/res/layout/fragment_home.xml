@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:elevation="3dp"
             android:visibility="invisible"
-            android:background="@android:color/transparent">
+            android:background="@color/primary">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"

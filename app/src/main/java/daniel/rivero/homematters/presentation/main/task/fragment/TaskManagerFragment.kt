@@ -33,8 +33,8 @@ class TaskManagerFragment : BaseViewModelFragment<TaskManagerViewModel, TaskMana
         setHasOptionsMenu(true)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         viewModel.onEvent(TaskManagerEvent.Initialize)
     }
 
@@ -58,6 +58,7 @@ class TaskManagerFragment : BaseViewModelFragment<TaskManagerViewModel, TaskMana
     override fun render(viewState: TaskManagerViewState) {
         when (viewState) {
             is TaskManagerViewState.LoadData -> loadInitialData(viewState.data)
+            is TaskManagerViewState.ShowError -> showMessage(viewState.message ?: getString(R.string.general_something_went_wrong))
         }
     }
 

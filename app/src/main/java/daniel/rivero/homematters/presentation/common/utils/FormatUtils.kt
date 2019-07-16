@@ -2,8 +2,7 @@ package daniel.rivero.homematters.presentation.common.utils
 
 
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 private val locale  = Locale("es","ES")
 
@@ -17,7 +16,8 @@ fun Date?.formatServiceDate(): String {
     return formatter.format(this)
 }
 
-fun String?.parseFormalDate(): Date {
+fun String?.parseFormalDate(): Date? {
+    if (this.isNullOrBlank()) return null
     val formatter = SimpleDateFormat("dd 'de' MMMM 'de' yyyy", locale)
     return formatter.parse(this)
 }
@@ -30,4 +30,11 @@ fun String.parseDate(): Date {
 fun Date.formatDateMonth(): String {
     val formatter = SimpleDateFormat("MMM", locale)
     return formatter.format(this)
+}
+
+fun Long.parseDate(): Date {
+    val cal = Calendar.getInstance()
+    cal.timeInMillis = this
+
+    return cal.time
 }

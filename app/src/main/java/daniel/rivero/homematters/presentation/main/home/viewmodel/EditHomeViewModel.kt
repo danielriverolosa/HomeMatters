@@ -16,11 +16,14 @@ class EditHomeViewModel @Inject constructor(
     private val editHomeUseCase: EditHomeUseCase
 ): BaseViewModel<EditHomeViewState, EditHomeEvent>(app) {
 
+    private lateinit var home: Home
+
     override fun onEvent(event: EditHomeEvent) {
         when(event) {
             is EditHomeEvent.LoadData -> loadInitialData(event.home, event.userList)
             is EditHomeEvent.Continue -> onClickContinue(
                 EditHomeDto(
+                    home.id,
                     event.homeName,
                     event.user
                 )
@@ -29,7 +32,8 @@ class EditHomeViewModel @Inject constructor(
     }
 
     private fun loadInitialData(home: Home, userList: List<User>) {
-        val admin = userList.first { it.id == home.admin.id }
+        this.home = home
+        val admin = userList.first { it.id == home.adminId }
         updateViewState(EditHomeViewState.LoadData(home.name, admin, userList))
     }
 

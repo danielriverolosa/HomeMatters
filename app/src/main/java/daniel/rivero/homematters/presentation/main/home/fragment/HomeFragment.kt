@@ -76,7 +76,7 @@ class HomeFragment : BaseViewModelFragment<HomeViewModel, HomeViewState>() {
     }
 
     private fun loadData(userList: List<User>, totalEffort: Int) {
-        weeklyEffort.text = totalEffort.toString()
+        weeklyEffort.text = getString(R.string.home_effort_capacity_text, totalEffort)
         weeklyEffort.show()
 
         recyclerView.show()

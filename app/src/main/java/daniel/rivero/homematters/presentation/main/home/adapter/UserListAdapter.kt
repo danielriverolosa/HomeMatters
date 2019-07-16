@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import daniel.rivero.homematters.R
 import daniel.rivero.homematters.domain.User
 import daniel.rivero.homematters.presentation.base.utils.inflate
-import kotlinx.android.synthetic.main.item_calendar_task.view.*
 import kotlinx.android.synthetic.main.item_user_list.view.*
 import kotlinx.android.synthetic.main.item_user_list.view.name
 
@@ -35,7 +34,7 @@ class UserListAdapter(
             itemView.apply {
                 name.text = item.name
                 email.text = item.email
-                effort.text = item.weeklyEffort.toString()
+                weeklyEffort.text = item.weeklyEffort.toString()
             }
         }
     }

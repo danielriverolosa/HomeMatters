@@ -8,5 +8,7 @@ class AssignedTaskResponse(
     val icon: String,
     val effort: Int,
     val date: String,
-    val isDone: Boolean
+    val isDone: Boolean,
+    val userId: String,
+    val houseId: String
 )

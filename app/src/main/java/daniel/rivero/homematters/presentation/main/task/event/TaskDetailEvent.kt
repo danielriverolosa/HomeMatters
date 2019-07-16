@@ -10,6 +10,6 @@ sealed class TaskDetailEvent : Event {
 
     class Initialize(val task: Task): TaskDetailEvent()
     class EffortChange(val value: Int): TaskDetailEvent()
-    class Continue(val taskEffort: TaskEffort?, val date: Date?, val assignedUser: User?): TaskDetailEvent()
+    class Continue(val task: Task, val taskEffort: TaskEffort?, val date: Date?, val assignedUser: User?, val isDone: Boolean = false): TaskDetailEvent()
 
 }
